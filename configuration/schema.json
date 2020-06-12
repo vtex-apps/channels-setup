@@ -1,0 +1,56 @@
+{
+  "type": "object",
+  "properties": {
+      "name": { "type": "string" },
+      "imageUrl": { "type": "string" },
+      "salesChannels": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "integer" },
+            "name": { "type": "string"},
+            "description": { "type": "string" },
+            "commissioning": {
+              "type": "object",
+              "properties": {
+                "product": {
+                  "type": "number"
+                },
+                "freight": {
+                  "type": "number"
+                },
+                "categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string"},
+                      "value": { "type": "number" }
+                    }
+                  }
+                }
+              }
+            },
+            "payment": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "customConfig": {
+          "type": "object",
+          "required": [
+            "active"
+          ],
+          "properties": {
+              "active": {
+                "type": "boolean"
+              },
+              "form": {
+                "type": "object"
+              }
+          }
+      }
+  }
+}

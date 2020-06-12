@@ -1,0 +1,34 @@
+{
+  "memory": 256,
+  "ttl": 10,
+  "timeout": 5,
+  "minReplicas": 2,
+  "maxReplicas": 4,
+  "routes": {
+    "setup": {
+      "path": "/_v/channels-setup/seller/setup",
+      "public": true,
+      "settingsType": "workspace"
+    },
+    "requests": {
+      "path": "/_v/channels-setup/requests",
+      "public": true
+    },
+    "channels": {
+      "path": "/_v/channels-setup/seller/channels",
+      "public": true,
+      "settingsType": "workspace"
+    },
+    "handshake": {
+      "path": "/_v/channels-setup/mkp/handshake",
+      "public": false
+    },
+    "acceptRequest": {
+      "path": "/_v/channels-setup/mkp/requests/accept",
+      "public": true
+    },
+    "acceptNotification": {
+      "path": "/_v/channels-setup/seller/requests/accept"
+    }
+  }
+}
