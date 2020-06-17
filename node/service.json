@@ -6,29 +6,27 @@
   "maxReplicas": 4,
   "routes": {
     "setup": {
-      "path": "/_v/channels-setup/seller/setup",
-      "public": true,
+      "path": "/seller/setup",
       "settingsType": "workspace"
     },
+    "customSetup": {
+      "path": "/seller/setup/custom"
+    },
     "requests": {
-      "path": "/_v/channels-setup/requests",
-      "public": true
+      "path": "/requests"
     },
     "channels": {
-      "path": "/_v/channels-setup/seller/channels",
-      "public": true,
+      "path": "/seller/channels",
       "settingsType": "workspace"
     },
     "handshake": {
-      "path": "/_v/channels-setup/mkp/handshake",
-      "public": false
+      "path": "/marketplace/handshake"
     },
     "acceptRequest": {
-      "path": "/_v/channels-setup/mkp/requests/accept",
-      "public": true
+      "path": "/marketplace/requests/accept"
     },
     "acceptNotification": {
-      "path": "/_v/channels-setup/seller/requests/accept"
+      "path": "/seller/requests/accept"
     }
   }
 }

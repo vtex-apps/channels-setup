@@ -46,5 +46,5 @@ export async function setup(ctx: Context) {
 interface SetupReq {
   mkpAccount: string
   affiliateId: string
-  salesChannels: SalesChannelMap
+  salesChannels: SalesChannelMap[]
 }

@@ -1,7 +1,10 @@
 import { json } from 'co-body'
 
 import ConfigurationApp from '../../clients/configurationApp'
-import { CHANNEL_REQUESTS_ENTITY } from '../../utils/constants'
+import {
+  CHANNEL_REQUESTS_ENTITY,
+  CHANNEL_REQUESTS_SCHEMA,
+} from '../../utils/constants'
 
 export async function customSetup(ctx: Context) {
   const { mkpAccount } = await json(ctx.req)
@@ -9,11 +12,12 @@ export async function customSetup(ctx: Context) {
     ChannelRequest
   >({
     dataEntity: CHANNEL_REQUESTS_ENTITY,
-    fields: ['configurationApp'],
+    fields: ['requester', 'requested', 'salesChannels', 'settings'],
     pagination: {
       page: 1,
       pageSize: 1,
     },
+    schema: CHANNEL_REQUESTS_SCHEMA,
     where: `requested=${mkpAccount}`,
   })
 
@@ -25,6 +29,8 @@ export async function customSetup(ctx: Context) {
     }
   )
 
-  ctx.body = await configAppClient.customSetup(channelReq)
+  await configAppClient.customSetup(channelReq)
+
+  ctx.body = 'Triggered custom setup'
   ctx.status = 200
 }
