@@ -29,7 +29,7 @@ export default class Catalog extends VtexCommerce {
     ProductCommissionPercentage,
     FreightCommissionPercentage,
     FulfillmentEndpoint,
-    CatalogSystemEndpoint = '',
+    CatalogSystemEndpoint,
     IsActive = true,
     FulfillmentSellerId = '',
     SellerType = 1,
@@ -80,7 +80,7 @@ interface CatalogInput {
   ProductCommissionPercentage: number
   FreightCommissionPercentage: number
   FulfillmentEndpoint: string
-  CatalogSystemEndpoint?: string
+  CatalogSystemEndpoint: string
   IsActive?: boolean
   FulfillmentSellerId?: string
   SellerType?: number

@@ -2,18 +2,23 @@ import { AppClient, InstanceOptions, IOContext } from '@vtex/api'
 
 export default class Itself extends AppClient {
   constructor(ctx: IOContext, options?: InstanceOptions) {
-    super('vtex.channels-setup@0.x', ctx, options)
+    super('vtex.channels-setup@0.x', ctx, {
+      ...options,
+      timeout: 5000,
+    })
   }
 
   public async mkpRequest(channelRequest: ChannelRequest) {
-    return this.http.post('_v/channels-setup/mkp/handshake', channelRequest)
+    return this.http.post('marketplace/handshake', channelRequest)
   }
 
-  public async notifyAccept() {
-    return this.http.post('_v/channels-setup/seller/request/accept')
+  public async notifyAccept(mkpAccount: string) {
+    return this.http.post('seller/requests/accept', {
+      mkpAccount,
+    })
   }
 
-  public async customSetup() {
-    return this.http.post('_v/channels-setup/seller/customSetup')
+  public async customSetup(mkpAccount: string) {
+    return this.http.post('/seller/setup/custom', { mkpAccount })
   }
 }

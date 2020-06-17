@@ -8,6 +8,7 @@ import {
 } from '@vtex/api'
 
 import { Clients } from './clients'
+import { customSetup } from './handlers/seller/customSetup'
 import { setup } from './handlers/seller/setup'
 import { channels } from './handlers/channels'
 import { requests } from './handlers/requests'
@@ -17,7 +18,7 @@ import { acceptNotification } from './handlers/seller/acceptNotification'
 
 const TIMEOUT_MS = 800
 
-const memoryCache = new LRUCache<string, any>({ max: 5000 })
+const memoryCache = new LRUCache({ max: 5000 })
 metrics.trackCache('status', memoryCache)
 
 const clients: ClientsConfig<Clients> = {
@@ -40,6 +41,7 @@ export default new Service<Clients, RecorderState, ParamsContext>({
     acceptRequest,
     acceptNotification,
     channels,
+    customSetup,
     handshake,
     requests,
     setup,

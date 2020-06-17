@@ -36,7 +36,7 @@ export async function acceptRequest(ctx: Context) {
 
   const [sellerRequest] = await Masterdata.searchDocuments<ChannelRequest>({
     dataEntity: CHANNEL_REQUESTS_ENTITY,
-    fields: [],
+    fields: ['id', 'salesChannels', 'settings'],
     pagination: {
       page: 1,
       pageSize: 1,
@@ -50,7 +50,7 @@ export async function acceptRequest(ctx: Context) {
     account: sellerAccount,
   })
 
-  await ItselfClient.notifyAccept()
+  await ItselfClient.notifyAccept(ctx.vtex.account)
 
   Promise.all(
     sellerRequest.salesChannels.map(salesChannelMap => {
@@ -61,6 +61,7 @@ export async function acceptRequest(ctx: Context) {
 
       return Catalog.createSeller({
         CSCIdentification: sellerAccount,
+        CatalogSystemEndpoint: `http://${sellerAccount}.vtexcommercestable.com.br/api/catalog_system/`,
         Email: `${sellerAccount}@vtex.com`,
         FreightCommissionPercentage: findCommission(
           'freight',
@@ -81,5 +82,7 @@ export async function acceptRequest(ctx: Context) {
     })
   )
 
-  ItselfClient.customSetup()
+  await ItselfClient.customSetup(ctx.vtex.account)
+  ctx.status = 200
+  ctx.body = sellerRequest
 }

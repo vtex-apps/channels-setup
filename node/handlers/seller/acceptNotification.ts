@@ -1,7 +1,10 @@
 import { NotFoundError } from '@vtex/api'
 import { json } from 'co-body'
 
-import { CHANNEL_REQUESTS_ENTITY } from '../../utils/constants'
+import {
+  CHANNEL_REQUESTS_ENTITY,
+  CHANNEL_REQUESTS_SCHEMA,
+} from '../../utils/constants'
 
 const formatSearchEndpointUri = (mkpAccount: string, sellerAccount: string) =>
   `http://productnotification.vtexcommerce.com.br/api/notification/${mkpAccount}/${sellerAccount}`
@@ -22,6 +25,7 @@ export async function acceptNotification(ctx: Context) {
       page: 1,
       pageSize: 1,
     },
+    schema: CHANNEL_REQUESTS_SCHEMA,
     where: `requested=${mkpAccount}`,
   })) || [{}]
 
