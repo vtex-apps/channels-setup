@@ -1,14 +1,19 @@
-import { InstanceOptions, IOContext } from '@vtex/api'
-
-import VtexCommerce from './vtexCommerce'
+import { InstanceOptions, IOContext, JanusClient } from '@vtex/api'
 
 const routes = {
-  seller: (sellerId: string) => `/pvt/seller/${sellerId}`,
+  base: () => `catalog_system`,
+  seller: (sellerId: string) => `${routes.base()}/pvt/seller/${sellerId}`,
 }
 
-export default class Catalog extends VtexCommerce {
+export default class Catalog extends JanusClient {
   constructor(ctx: IOContext, options?: InstanceOptions) {
-    super(ctx, 'catalog_system', options)
+    super(ctx, {
+      ...options,
+      headers: {
+        VtexIdclientAutCookie: ctx.authToken,
+        ...options?.headers,
+      },
+    })
   }
 
   public createSeller({

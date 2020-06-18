@@ -1,11 +1,25 @@
-import { InstanceOptions, IOContext, RequestTracingConfig } from '@vtex/api'
+import {
+  InstanceOptions,
+  IOContext,
+  JanusClient,
+  RequestTracingConfig,
+} from '@vtex/api'
 
 import { createTracing } from '../utils/tracing'
-import VtexCommerce from './vtexCommerce'
 
-export default class Affiliate extends VtexCommerce {
+const routes = {
+  affiliate: (id: string) => `${routes.base()}/${id}`,
+  base: () => `fulfillment/pvt/affiliates`,
+}
+export default class Affiliate extends JanusClient {
   constructor(ctx: IOContext, options?: InstanceOptions) {
-    super(ctx, 'fulfillment/pvt/affiliates', options)
+    super(ctx, {
+      ...options,
+      headers: {
+        VtexIdclientAutCookie: ctx.authToken,
+        ...options?.headers,
+      },
+    })
   }
 
   public registerAffiliate(
@@ -14,7 +28,7 @@ export default class Affiliate extends VtexCommerce {
   ) {
     const metric = 'affiliate-registerAffiliate'
     return this.http.put(
-      id,
+      routes.affiliate(id),
       {
         followUpEmail: 'mock@mock.com',
         id,

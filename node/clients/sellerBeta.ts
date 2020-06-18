@@ -1,10 +1,19 @@
-import { InstanceOptions, IOContext } from '@vtex/api'
+import { InstanceOptions, IOContext, JanusClient } from '@vtex/api'
 
-import VtexCommerce from './vtexCommerce'
+const routes = {
+  base: () => `seller-register`,
+  seller: () => `${routes.base}/pvt/seller`,
+}
 
-export default class Seller extends VtexCommerce {
+export default class Seller extends JanusClient {
   constructor(ctx: IOContext, options?: InstanceOptions) {
-    super(ctx, 'seller-register', options)
+    super(ctx, {
+      ...options,
+      headers: {
+        VtexIdclientAutCookie: ctx.authToken,
+        ...options?.headers,
+      },
+    })
   }
 
   public createSeller({
@@ -28,7 +37,7 @@ export default class Seller extends VtexCommerce {
     securityPrivacyPolicy = null,
     fulfillmentSellerId = '',
   }: SellerInput) {
-    this.http.post('/pvt/seller', {
+    this.http.post(routes.seller(), {
       CSCIdentification,
       account,
       channel,
