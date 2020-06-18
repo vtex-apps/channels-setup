@@ -16,9 +16,7 @@ export async function acceptNotification(ctx: Context) {
     vtex: { account: sellerAccount },
   } = ctx
 
-  const [{ id, salesChannels, settings }] = (await Masterdata.searchDocuments<
-    ChannelRequest
-  >({
+  const [channelRequest] = await Masterdata.searchDocuments<ChannelRequestDoc>({
     dataEntity: CHANNEL_REQUESTS_ENTITY,
     fields: ['salesChannels', 'settings', 'id'],
     pagination: {
@@ -27,11 +25,13 @@ export async function acceptNotification(ctx: Context) {
     },
     schema: CHANNEL_REQUESTS_SCHEMA,
     where: `requested=${mkpAccount}`,
-  })) || [{}]
+  })
 
-  if (!id) {
+  if (!channelRequest) {
     throw new NotFoundError('No request found for this marketplace')
   }
+
+  const { id, salesChannels, settings } = channelRequest
 
   const affiliates = await Promise.all(
     salesChannels.map(salesChannel =>

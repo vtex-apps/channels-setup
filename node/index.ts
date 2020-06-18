@@ -1,22 +1,26 @@
 import {
   ClientsConfig,
   LRUCache,
+  ParamsContext,
+  RecorderState,
   Service,
   ServiceContext,
-  RecorderState,
-  ParamsContext,
 } from '@vtex/api'
 
 import { Clients } from './clients'
+import { channels } from './handlers/channels'
+import { acceptRequest } from './handlers/mkp/acceptRequest'
+import { handshake } from './handlers/mkp/handshake'
+import { requests } from './handlers/requests'
+import { acceptNotification } from './handlers/seller/acceptNotification'
 import { customSetup } from './handlers/seller/customSetup'
 import { setup } from './handlers/seller/setup'
-import { channels } from './handlers/channels'
-import { requests } from './handlers/requests'
-import { handshake } from './handlers/mkp/handshake'
-import { acceptRequest } from './handlers/mkp/acceptRequest'
-import { acceptNotification } from './handlers/seller/acceptNotification'
+import { acceptRequestResolver } from './resolvers/mutation/acceptRequest'
+import { requestSetupResolver } from './resolvers/mutation/requestSetup'
+import { channelsResolver } from './resolvers/query/channels'
+import { requestsResolver } from './resolvers/query/requests'
 
-const TIMEOUT_MS = 800
+const TIMEOUT_MS = 10000
 
 const memoryCache = new LRUCache({ max: 5000 })
 metrics.trackCache('status', memoryCache)
@@ -37,9 +41,21 @@ declare global {
 
 export default new Service<Clients, RecorderState, ParamsContext>({
   clients,
+  graphql: {
+    resolvers: {
+      Mutation: {
+        acceptRequest: acceptRequestResolver,
+        requestSetup: requestSetupResolver,
+      },
+      Query: {
+        channels: channelsResolver,
+        requests: requestsResolver,
+      },
+    },
+  },
   routes: {
-    acceptRequest,
     acceptNotification,
+    acceptRequest,
     channels,
     customSetup,
     handshake,

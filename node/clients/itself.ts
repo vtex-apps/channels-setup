@@ -4,7 +4,8 @@ export default class Itself extends AppClient {
   constructor(ctx: IOContext, options?: InstanceOptions) {
     super('vtex.channels-setup@0.x', ctx, {
       ...options,
-      timeout: 5000,
+      retries: 3,
+      timeout: 10000,
     })
   }
 

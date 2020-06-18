@@ -1,7 +1,6 @@
-import { extractSettings } from '../utils/extractSettings'
+import { fetchChannels } from '../resources/fetchChannels'
 
 export async function channels(ctx: Context) {
-  ctx.body = extractSettings(
-    ctx.vtex.settings
-  ).map(({ appId, name, imageUrl }) => ({ appId, name, imageUrl }))
+  ctx.body = await fetchChannels(ctx)
+  ctx.status = 200
 }

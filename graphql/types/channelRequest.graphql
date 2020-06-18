@@ -1,0 +1,38 @@
+type ChannelRequest {
+  salesChannels: [SalesChannelMap]
+  settings: ChannelSettings
+  status: String
+  requester: String
+  requested: String
+}
+
+type SalesChannelMap {
+  affiliateId: String
+  mkp: Int
+  seller: Int
+}
+
+input SalesChannelMapInput {
+  affiliateId: String
+  mkp: Int
+  seller: Int
+}
+
+type ChannelSettings {
+  name: String
+  imageUrl: String
+  salesChannels: [SalesChannelSettings]
+}
+
+type SalesChannelSettings {
+  id: Int
+  name: String
+  description: String
+  commissioning: Commissioning
+  payment: String
+}
+
+type Commissioning {
+  product: Float
+  freight: Float
+}

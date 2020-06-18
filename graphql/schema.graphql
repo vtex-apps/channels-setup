@@ -1,0 +1,14 @@
+type Query {
+  requests(as: String): [ChannelRequest]
+
+  channels: [Channel] @settings(settingsType: "workspace")
+}
+
+type Mutation {
+  requestSetup(
+    mkpAccount: String
+    salesChannels: [SalesChannelMapInput]
+  ): ChannelRequest @settings(settingsType: "workspace")
+
+  acceptRequest(sellerAccount: String): ChannelRequest
+}

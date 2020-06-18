@@ -21,6 +21,9 @@ interface SalesChannelSettings {
 
 type SettingsType = Array<Record<string, ChannelSettings>>
 
+interface ChannelRequestDoc extends ChannelRequest {
+  id: string
+}
 interface ChannelRequest {
   id?: string
   requester: string
