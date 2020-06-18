@@ -6,7 +6,7 @@ import { CHANNEL_REQUESTS_ENTITY } from '../../utils/constants'
 export async function handshake(ctx: Context) {
   await updateSchema(ctx)
 
-  const channelRequest = (await json(ctx.req)) as ChannelRequest
+  const channelRequest: ChannelRequest = await json(ctx.req)
 
   await validateRequest(ctx, channelRequest.requester, false)
 
