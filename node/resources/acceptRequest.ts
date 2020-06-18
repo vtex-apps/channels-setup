@@ -1,6 +1,6 @@
 import { NotFoundError } from '@vtex/api'
 
-import Itself from '../clients/itself'
+import ChannelsSetup from '../clients/channels-setup'
 import {
   CHANNEL_REQUESTS_ENTITY,
   CHANNEL_REQUESTS_SCHEMA,
@@ -50,12 +50,12 @@ export const acceptRequestResource = async (
     throw new NotFoundError('No such request')
   }
 
-  const ItselfClient = new Itself({
+  const ChannelsSetupClient = new ChannelsSetup({
     ...ctx.vtex,
     account: sellerAccount,
   })
 
-  await ItselfClient.notifyAccept(ctx.vtex.account)
+  await ChannelsSetupClient.notifyAccept(ctx.vtex.account)
 
   await Promise.all(
     sellerRequest.salesChannels.map(salesChannelMap => {
@@ -87,7 +87,7 @@ export const acceptRequestResource = async (
     })
   )
 
-  await ItselfClient.customSetup(ctx.vtex.account)
+  await ChannelsSetupClient.customSetup(ctx.vtex.account)
 
   return sellerRequest
 }

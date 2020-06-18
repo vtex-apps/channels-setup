@@ -1,6 +1,6 @@
 import { AppClient, InstanceOptions, IOContext } from '@vtex/api'
 
-export default class Itself extends AppClient {
+export default class ChannelsSetup extends AppClient {
   constructor(ctx: IOContext, options?: InstanceOptions) {
     super('vtex.channels-setup@0.x', ctx, {
       ...options,

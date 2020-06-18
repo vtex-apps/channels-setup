@@ -1,4 +1,4 @@
-import Itself from '../clients/itself'
+import ChannelsSetup from '../clients/channels-setup'
 import { updateSchema, validateRequest } from '../utils/channelRequest'
 import { CHANNEL_REQUESTS_ENTITY } from '../utils/constants'
 import { extractSettings } from '../utils/extractSettings'
@@ -30,7 +30,7 @@ export const requestSetup = async (
     status: 'pending',
   } as ChannelRequest
 
-  await new Itself({
+  await new ChannelsSetup({
     ...ctx.vtex,
     account: mkpAccount,
   }).mkpRequest(request)
