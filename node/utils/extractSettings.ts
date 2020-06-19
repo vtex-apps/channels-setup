@@ -1,17 +1,27 @@
 import { toPairs } from 'ramda'
 
-export const extractSettings = (
-  settings: Array<Record<string, ChannelSettings>>
-) =>
-  settings.map(appSettings =>
+const getAppId = (declarer: string) => {
+  const [id, version] = declarer.split('@')
+
+  const [major] = version.split('.')
+
+  return `${id}@${major}.x`
+}
+
+export const extractSettings = (settings: Array<Record<string, any>>) => {
+  return settings.map(appSettings =>
     toPairs(appSettings).reduce(
       (acc, [key, value]) =>
         key === 'declarer'
-          ? acc
+          ? {
+              ...acc,
+              appId: getAppId(value),
+            }
           : {
-              appId: key,
+              ...acc,
               ...value,
             },
       {} as AppSettings
     )
   )
+}

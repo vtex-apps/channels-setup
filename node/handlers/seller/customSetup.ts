@@ -22,7 +22,7 @@ export async function customSetup(ctx: Context) {
   })
 
   const configAppClient = new ConfigurationApp(
-    `${channelReq?.settings.appId}@0.x`, // TODO Fetch this info
+    `${channelReq?.settings.appId}`,
     ctx.vtex,
     {
       retries: 5,
