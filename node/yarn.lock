@@ -5878,6 +5878,14 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
+"vtex.channels-setup@https://savio--appliancetheme.myvtex.com/_v/private/typings/linked/v1/vtex.channels-setup@0.0.1+build1592938720/public/@types/vtex.channels-setup":
+  version "0.0.1"
+  resolved "https://savio--appliancetheme.myvtex.com/_v/private/typings/linked/v1/vtex.channels-setup@0.0.1+build1592938720/public/@types/vtex.channels-setup#48a4b66ef3284fc94f2ac326ac7814076d27d3cc"
+
+"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.121.0/public/@types/vtex.styleguide":
+  version "9.121.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.121.0/public/@types/vtex.styleguide#acd5bb61dbbe2d5afff4ebd585015619300e6c92"
+
 w3c-hr-time@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/w3c-hr-time/-/w3c-hr-time-1.0.1.tgz#82ac2bff63d950ea9e3189a58a65625fedf19045"

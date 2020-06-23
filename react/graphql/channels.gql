@@ -1,0 +1,7 @@
+query getChannels {
+  channels {
+    appId
+    name
+    imageUrl
+  }
+}

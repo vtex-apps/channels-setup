@@ -1,0 +1,10 @@
+{
+  "admin.app.channels": {
+    "component": "Channels",
+    "path": "/admin/app/channels-setup"
+  },
+  "admin.app.channel-setup": {
+    "component": "Setup",
+    "path": "/admin/app/channels-setup/:channel/"
+  }
+}

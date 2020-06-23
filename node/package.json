@@ -12,7 +12,9 @@
     "@vtex/test-tools": "^1.0.0",
     "tslint": "^5.14.0",
     "tslint-config-vtex": "^2.1.0",
-    "typescript": "3.8.3"
+    "typescript": "3.8.3",
+    "vtex.channels-setup": "https://savio--appliancetheme.myvtex.com/_v/private/typings/linked/v1/vtex.channels-setup@0.0.1+build1592938720/public/@types/vtex.channels-setup",
+    "vtex.styleguide": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.121.0/public/@types/vtex.styleguide"
   },
   "scripts": {
     "lint": "tsc --noEmit --pretty && tslint -c tslint.json --fix './**/*.ts'"
