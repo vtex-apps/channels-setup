@@ -2,10 +2,11 @@ import { fetchRequests } from '../../resources/fetchRequests'
 
 export const requestsResolver = (
   _: unknown,
-  { as }: RequestsParams,
+  { requested, requester }: RequestsParams,
   ctx: Context
-) => fetchRequests(as, ctx)
+) => fetchRequests(ctx, requested, requester)
 
 interface RequestsParams {
-  as: string
+  requested?: string
+  requester?: string
 }

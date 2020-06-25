@@ -2,7 +2,11 @@ import React, { FC } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 import { Button, Card } from 'vtex.styleguide'
 
-const Channel: FC<Props> = ({ name, imageUrl }) => {
+const CHANNEL_SETUP_PAGE = 'admin.app.channels-setup'
+
+const getVendor = (appId: string) => appId.split('.')[0]
+
+const Channel: FC<Props> = ({ appId, name, imageUrl }) => {
   const { navigate } = useRuntime()
   return (
     <div className="pa5" style={{ maxWidth: '18rem' }}>
@@ -18,7 +22,10 @@ const Channel: FC<Props> = ({ name, imageUrl }) => {
             <Button
               variation="primary"
               onClick={() =>
-                navigate({ to: `/admin/app/channels-setup/banana` })
+                navigate({
+                  page: CHANNEL_SETUP_PAGE,
+                  query: `id=${getVendor(appId)}`,
+                })
               }
             >
               Connect
@@ -31,6 +38,7 @@ const Channel: FC<Props> = ({ name, imageUrl }) => {
 }
 
 interface Props {
+  appId: string
   name: string
   imageUrl: string
 }

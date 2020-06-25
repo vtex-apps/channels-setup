@@ -1,0 +1,5 @@
+mutation acceptRequest($sellerAccount: String) {
+  acceptRequest(sellerAccount: $sellerAccount) {
+    status
+  }
+}

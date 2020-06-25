@@ -19,6 +19,7 @@ input SalesChannelMapInput {
 }
 
 type ChannelSettings {
+  appId: String
   name: String
   imageUrl: String
   salesChannels: [SalesChannelSettings]

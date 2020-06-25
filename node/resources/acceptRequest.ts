@@ -89,5 +89,13 @@ export const acceptRequestResource = async (
 
   await ChannelsSetupClient.customSetup(ctx.vtex.account)
 
+  await Masterdata.updatePartialDocument({
+    dataEntity: CHANNEL_REQUESTS_ENTITY,
+    fields: {
+      status: 'ready',
+    },
+    id: sellerRequest.id ?? '',
+  })
+
   return sellerRequest
 }

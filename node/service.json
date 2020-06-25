@@ -16,7 +16,7 @@
       "path": "/requests"
     },
     "channels": {
-      "path": "/seller/channels",
+      "path": "/seller/channels(/:vendor)",
       "settingsType": "workspace"
     },
     "handshake": {

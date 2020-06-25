@@ -1,10 +1,14 @@
 {
   "admin.app.channels": {
     "component": "Channels",
-    "path": "/admin/app/channels-setup"
+    "path": "/admin/app/channels-setup(:/channels)"
   },
-  "admin.app.channel-setup": {
+  "admin.app.channel-requests": {
+    "component": "Requests",
+    "path": "/admin/app/channels-setup/requests"
+  },
+  "admin.app.channels-setup": {
     "component": "Setup",
-    "path": "/admin/app/channels-setup/:channel/"
+    "path": "/admin/app/channels-setup/channel"
   }
 }

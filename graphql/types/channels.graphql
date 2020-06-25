@@ -1,5 +1,0 @@
-type Channel {
-  appId: String
-  name: String
-  imageUrl: String
-}

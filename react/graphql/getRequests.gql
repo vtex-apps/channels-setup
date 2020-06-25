@@ -1,0 +1,9 @@
+query getRequests($requested: String) {
+  requests(requested: $requested) {
+    requester
+    status
+    salesChannels {
+      mkp
+    }
+  }
+}

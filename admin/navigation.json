@@ -1,5 +1,14 @@
 {
   "section": "other",
-  "titleId": "Channels",
-  "path": "/admin/channels-setup"
+  "titleId": "channels-setup.navigation.title",
+  "subSectionItems": [
+    {
+      "labelId": "channels-setup.navigation.installed",
+      "path": "/admin/channels-setup"
+    },
+    {
+      "labelId": "channels-setup.navigation.requests",
+      "path": "/admin/channels-setup/requests"
+    }
+  ]
 }

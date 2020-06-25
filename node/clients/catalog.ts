@@ -1,7 +1,7 @@
 import { InstanceOptions, IOContext, JanusClient } from '@vtex/api'
 
 const routes = {
-  base: () => `catalog_system`,
+  base: () => `api/catalog_system`,
   seller: (sellerId: string) => `${routes.base()}/pvt/seller/${sellerId}`,
 }
 

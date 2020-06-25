@@ -1,7 +1,8 @@
 type Query {
-  requests(as: String): [ChannelRequest]
+  requests(requested: String, requester: String): [ChannelRequest]
 
-  channels: [Channel] @settings(settingsType: "workspace")
+  channels(vendor: String): [ChannelSettings]
+    @settings(settingsType: "workspace")
 }
 
 type Mutation {

@@ -1,0 +1,10 @@
+mutation requestSetup(
+  $mkpAccount: String
+  $salesChannels: [SalesChannelMapInput]
+) {
+  requestSetup(mkpAccount: $mkpAccount, salesChannels: $salesChannels) {
+    status
+    requester
+    requested
+  }
+}

@@ -18,3 +18,18 @@ interface SalesChannelSettings {
   }
   payment: string
 }
+
+interface ChannelRequest {
+  id?: string
+  requester: string
+  requested: string
+  status: string
+  salesChannels: SalesChannelMap[]
+  settings: AppSettings
+}
+
+interface SalesChannelMap {
+  affiliateId: string
+  mkp: number
+  seller: number
+}

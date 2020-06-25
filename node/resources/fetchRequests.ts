@@ -3,23 +3,31 @@ import {
   CHANNEL_REQUESTS_SCHEMA,
 } from '../utils/constants'
 
-export const fetchRequests = async (as: string, ctx: Context) => {
-  const isMarketplace = as === 'marketplace'
+const formatWhere = (requested?: string, requester?: string) =>
+  [
+    ...(requested ? [`requested=${requested}`] : []),
+    ...(requester ? [`requester=${requester}`] : []),
+  ].join(' AND ')
 
-  return ctx.clients.masterdata.searchDocuments({
+export const fetchRequests = async (
+  ctx: Context,
+  requested?: string,
+  requester?: string
+) =>
+  ctx.clients.masterdata.searchDocuments({
     dataEntity: CHANNEL_REQUESTS_ENTITY,
     fields: [
       'affiliateId',
       'salesChannels',
       'settings',
       'status',
-      `${isMarketplace ? 'requester' : 'requested'}`,
+      'requester',
+      'requested',
     ],
     pagination: {
       page: 1,
       pageSize: 1,
     },
     schema: CHANNEL_REQUESTS_SCHEMA,
-    where: `${isMarketplace ? 'requested' : 'requester'}=${ctx.vtex.account}`,
+    where: formatWhere(requested, requester),
   })
-}

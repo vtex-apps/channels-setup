@@ -9,7 +9,7 @@ import { createTracing } from '../utils/tracing'
 
 const routes = {
   affiliate: (id: string) => `${routes.base()}/${id}`,
-  base: () => `fulfillment/pvt/affiliates`,
+  base: () => `api/fulfillment/pvt/affiliates`,
 }
 export default class Affiliate extends JanusClient {
   constructor(ctx: IOContext, options?: InstanceOptions) {

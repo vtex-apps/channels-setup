@@ -2,17 +2,11 @@ import React, { FC } from 'react'
 import { Layout, PageBlock, PageHeader } from 'vtex.styleguide'
 import { useQuery } from 'react-apollo'
 
-import getChannels from './graphql/channels.gql'
+import getChannels from './graphql/getChannels.gql'
 import Channel from './components/Channel'
 
 const renderChannels = ({ channels }: { channels: AppSettings[] }) =>
-  [
-    ...channels,
-    ...channels,
-    ...channels,
-    ...channels,
-    ...channels,
-  ].map(channel => <Channel key={channel.appId} {...channel} />)
+  channels.map(channel => <Channel key={channel.appId} {...channel} />)
 
 const Channels: FC = () => {
   const { data: channelsRes, loading } = useQuery(getChannels)

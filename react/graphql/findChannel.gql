@@ -1,0 +1,17 @@
+query findChannel($vendor: String) {
+  channels(vendor: $vendor) {
+    appId
+    name
+    imageUrl
+    salesChannels {
+      id
+      name
+      description
+      commissioning {
+        product
+        freight
+      }
+      payment
+    }
+  }
+}
