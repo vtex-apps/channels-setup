@@ -19,7 +19,7 @@ const TABLE_SCHEMA = {
       cellRenderer: function StatusCell({
         cellData: { status, onClick },
       }: StatusCellParams) {
-        return status ? (
+        return status === 'pending' ? (
           <div className="ma2">
             <Button size="small" onClick={onClick}>
               Accept
