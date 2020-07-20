@@ -1,10 +1,11 @@
 import React, { FC, useState } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 import { useMutation } from 'react-apollo'
-import { Button, Input } from 'vtex.styleguide'
+import { Button, Input, Spinner } from 'vtex.styleguide'
 
 import Conditions from './Conditions'
 import requestSetupMutation from '../graphql/requestSetup.gql'
+import { showToast } from '../utils/toast'
 
 const getAffiliateName = (accountName: string, currency: string) =>
   currency.slice(0, 1) +
@@ -23,7 +24,10 @@ const SetupForm: FC<Props> = ({ settings }) => {
     salesChannel: 1,
   })
 
-  const [requestSetup] = useMutation(requestSetupMutation)
+  const [requestSetup, { loading }] = useMutation(requestSetupMutation, {
+    onError: err => showToast(err.message),
+    onCompleted: _ => showToast('Request sent'),
+  })
 
   return (
     <div>
@@ -42,7 +46,10 @@ const SetupForm: FC<Props> = ({ settings }) => {
           <Input
             defaultValue={salesChannel}
             onChange={(e: any) =>
-              setState({ salesChannel: Number(e.target.value), affiliateId })
+              setState({
+                salesChannel: Number(e.target.value),
+                affiliateId,
+              })
             }
             label="Sales Channel"
           />
@@ -63,7 +70,7 @@ const SetupForm: FC<Props> = ({ settings }) => {
             })
           }
         >
-          Request Connection
+          {loading ? <Spinner size={20} color="white" /> : 'Request Connection'}
         </Button>
       </div>
     </div>

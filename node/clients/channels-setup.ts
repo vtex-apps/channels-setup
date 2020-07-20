@@ -5,7 +5,7 @@ export default class ChannelsSetup extends AppClient {
     super('vtex.channels-setup@0.x', ctx, {
       ...options,
       retries: 3,
-      timeout: 10000,
+      timeout: 20000,
     })
   }
 

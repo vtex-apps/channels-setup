@@ -26,7 +26,7 @@ export const fetchRequests = async (
     ],
     pagination: {
       page: 1,
-      pageSize: 1,
+      pageSize: 100,
     },
     schema: CHANNEL_REQUESTS_SCHEMA,
     where: formatWhere(requested, requester),

@@ -1,6 +1,5 @@
 import {
   ClientsConfig,
-  LRUCache,
   ParamsContext,
   RecorderState,
   Service,
@@ -20,10 +19,7 @@ import { requestSetupResolver } from './resolvers/mutation/requestSetup'
 import { channelsResolver } from './resolvers/query/channels'
 import { requestsResolver } from './resolvers/query/requests'
 
-const TIMEOUT_MS = 10000
-
-const memoryCache = new LRUCache({ max: 5000 })
-metrics.trackCache('status', memoryCache)
+const TIMEOUT_MS = 20000
 
 const clients: ClientsConfig<Clients> = {
   implementation: Clients,
